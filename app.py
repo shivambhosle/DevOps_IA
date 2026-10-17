@@ -1,3 +1,4 @@
+# pyrefly: ignore [missing-import]
 from flask import Flask, jsonify, render_template_string
 
 app = Flask(__name__)
