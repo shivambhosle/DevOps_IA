@@ -80,18 +80,17 @@ pipeline {
         stage('Verify Deployment') {
             steps {
                 echo 'Verifying container health and HTTP responsiveness...'
+                sleep time: 3, unit: 'SECONDS'
                 script {
                     if (isUnix()) {
                         sh """
-                            sleep 3
                             docker ps -f name=${CONTAINER_NAME}
-                            curl -s -f http://localhost:${APP_PORT}/health || exit 1
+                            curl -s -f http://localhost:${APP_PORT}/health
                         """
                     } else {
                         bat """
-                            timeout /t 3 /nobreak >nul
                             docker ps -f name=%CONTAINER_NAME%
-                            curl.exe -s -f http://localhost:%APP_PORT%/health || exit 1
+                            curl.exe -s -f http://localhost:%APP_PORT%/health
                         """
                     }
                 }
