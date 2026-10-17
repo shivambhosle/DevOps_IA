@@ -4,7 +4,7 @@ from flask import Flask, jsonify, render_template_string
 app = Flask(__name__)
 
 # Application version - increment this (e.g., 1.0 -> 1.1) to demonstrate pipeline updates
-APP_VERSION = "1.1"
+APP_VERSION = "1.0"
 
 HTML_TEMPLATE = """
 <!DOCTYPE html>
