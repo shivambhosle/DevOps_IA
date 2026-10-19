@@ -176,6 +176,7 @@ def home():
     """Homepage showing deployment status and application version."""
     return render_template_string(HTML_TEMPLATE, version=APP_VERSION), 200
 
+# Correct
 @app.route("/health")
 def health():
     """Healthcheck endpoint returning JSON status with HTTP 200."""
@@ -184,6 +185,16 @@ def health():
         "version": APP_VERSION,
         "service": "jenkins-docker-demo"
     }), 200
+
+#Incorrect (Fails Pytest & Blocks Deployment)
+# @app.route("/health")
+# def health():
+#          """Simulated broken logic returning 500 error."""
+#     return jsonify({
+#         "status": "down",
+#          "version": APP_VERSION,
+#          "service": "jenkins-docker-demo"
+#      }), 500
 
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=5000)
